@@ -355,30 +355,26 @@ EDUCATION
     <div className="h-screen bg-gradient-to-br from-teal-400 to-blue-500 relative overflow-hidden">
       {/* Desktop Icons */}
       <div className="absolute top-4 left-4 space-y-2">
-        <DesktopIcon
-          icon={FileText}
-          label="Resume.txt"
-          doubleClick={downloadCV}
-        />
+        <DesktopIcon icon={FileText} label="Resume.txt" onClick={downloadCV} />
         <DesktopIcon
           icon={User}
           label="About Me"
-          doubleClick={() => openWindow("about")}
+          onClick={() => openWindow("about")}
         />
         <DesktopIcon
           icon={Briefcase}
           label="Experience"
-          doubleClick={() => openWindow("experience")}
+          onClick={() => openWindow("experience")}
         />
         <DesktopIcon
           icon={GraduationCap}
           label="Education"
-          doubleClick={() => openWindow("education")}
+          onClick={() => openWindow("education")}
         />
         <DesktopIcon
           icon={Mail}
           label="Contact"
-          doubleClick={() => openWindow("contact")}
+          onClick={() => openWindow("contact")}
         />
       </div>
 
@@ -457,6 +453,14 @@ EDUCATION
         </div>
       </div>
 
+      {/* Click anywhere to close start menu */}
+      {startMenuOpen && (
+        <div
+          className="absolute inset-0 z-10"
+          onClick={() => setStartMenuOpen(false)}
+        />
+      )}
+
       {/* Start Menu */}
       <AnimatePresence>
         {startMenuOpen && (
@@ -464,7 +468,7 @@ EDUCATION
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className="absolute bottom-10 left-2 bg-gray-300 border-2 border-gray-400 border-t-white border-l-white w-64 shadow-lg"
+            className="absolute bottom-10 left-2 bg-gray-300 border-2 border-gray-400 border-t-white border-l-white w-64 shadow-lg z-20"
           >
             <div className="bg-gradient-to-r from-blue-800 to-blue-600 text-white p-2 text-sm font-bold">
               Egide Tumukunde
@@ -510,14 +514,6 @@ EDUCATION
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Click anywhere to close start menu */}
-      {startMenuOpen && (
-        <div
-          className="absolute inset-0 z-0"
-          onClick={() => setStartMenuOpen(false)}
-        />
-      )}
     </div>
   );
 };
